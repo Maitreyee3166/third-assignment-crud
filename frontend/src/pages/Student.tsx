@@ -69,7 +69,6 @@ const Student = () => {
 
   console.log("students", students);
   console.log("error", error);
-  console.log("loading", loading);
 
   const handleEditMode = (item: Students) => {
     console.log("item edit data", item);
