@@ -31,9 +31,10 @@ app.use(
       "http://localhost:3001",
       "http://localhost:6899",
       "https://third-assignment-frontend.vercel.app",
+      "https://third-assignment-frontend-git-main-maitreyee-samanta.vercel.app",
     ],
     credentials: true,
-  }),
+  })
 );
 
 app.use(express.json());
