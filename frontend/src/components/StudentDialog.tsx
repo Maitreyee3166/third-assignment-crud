@@ -54,7 +54,7 @@ const StudentDialog: React.FC<StudentDailogProps> = ({
 
   useEffect(() => {
     if (isEdit) {
-       console.log("Edit is calling in dialog");
+      console.log("Edit is calling in dialog");
       reset({
         name: isEdit.name,
         email: isEdit.email,
@@ -66,8 +66,7 @@ const StudentDialog: React.FC<StudentDailogProps> = ({
         setImagePreview(isEdit?.image);
       }
     } else {
-      console.log("Create is calling in dialog");
-      
+     
       reset({
         name: "",
         email: "",

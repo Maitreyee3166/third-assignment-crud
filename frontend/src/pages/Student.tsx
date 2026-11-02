@@ -14,6 +14,7 @@ import type { StudentPayloadType } from "../services/validation/student.validati
 import {
   Box,
   Button,
+  CircularProgress,
   FormControl,
   MenuItem,
   Select,
@@ -23,7 +24,7 @@ import { UserPlus } from "lucide-react";
 
 const Student = () => {
   const [students, setStudents] = useState<Students[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   const [isAddloading, setisAddloading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
   const [page, setPage] = useState(1);
@@ -42,24 +43,33 @@ const Student = () => {
 
   useEffect(() => {
     const fetchStudent = async () => {
-      setLoading(true);
-      setError("");
-      const response = await getStudentFns({ page, limit });
-      console.log("response in Student", response);
-      if (response.success) {
-        setStudents(response.data);
-        setpagination(response.pagination);
-        console.log("response.message", response.message);
-        toast.success(response.message);
-      } else {
-        setError(response.message);
+      try {
+        setLoading(true);
+        setError("");
+        const response = await getStudentFns({ page, limit });
+        console.log("response in Student", response);
+        if (response.success) {
+          setStudents(response.data);
+          setpagination(response.pagination);
+          console.log("response.message", response.message);
+          toast.success(response.message);
+        } else {
+          setError(response.message);
+        }
+      } catch (error) {
+        setError("Something went wrong");
+      } finally {
+        setLoading(false);
+        console.log("Complete it's working");
+        
       }
-      setLoading(false);
     };
     fetchStudent();
   }, [page, limit]);
 
   console.log("students", students);
+  console.log("error", error);
+  console.log("loading", loading);
 
   const handleEditMode = (item: Students) => {
     console.log("item edit data", item);
@@ -144,6 +154,9 @@ const Student = () => {
           Add Student <UserPlus size={18} />
         </button>
       </div>
+
+      {loading && <CircularProgress />}
+
       <StudentTable
         data={students}
         handleDelete={handleDelete}
@@ -190,7 +203,6 @@ const Student = () => {
                 fontWeight: 600,
               }}
             >
-              
               <MenuItem value={5}>5</MenuItem>
               <MenuItem value={10}>10</MenuItem>
               <MenuItem value={15}>15</MenuItem>

@@ -12,6 +12,10 @@
     {
       "url": "http://localhost:3006",
       "description": "Local Development Server"
+    },
+    {
+      "url": "https://student-crud-backend-yd1f.onrender.com",
+      "description": "Production Server (Render)"
     }
   ],
   "tags": [
@@ -19,7 +23,6 @@
       "name": "Student",
       "description": "Student API"
     }
-    
   ],
   "components": {
     "securitySchemes": {
@@ -30,5 +33,4 @@
       }
     }
   }
-
 }
