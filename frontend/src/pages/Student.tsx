@@ -60,7 +60,6 @@ const Student = () => {
         setError("Something went wrong");
       } finally {
         setLoading(false);
-        console.log("Complete it's working");
         
       }
     };
